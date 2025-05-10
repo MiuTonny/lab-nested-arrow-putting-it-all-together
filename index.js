@@ -3,31 +3,26 @@ function createLoginTracker(userInfo) {
   const maxAttempts = 3;
   let isLocked = false;
 
-  //arrow function to handle login
-  const loginAttempt = (username, password) => {
+  return function loginAttempt(username, password) {
     if (isLocked) {
-      console.log("Account is locked.");
-      return;
+      return "Account locked due to too many failed login attempts";
     }
 
-    attemptCount++; //attempt count
-
     if (username === userInfo.username && password === userInfo.password) {
-      console.log(`Welcome, ${userInfo.username}!`);
-      attemptCount = 0; // Reset
+      attemptCount = 0; // reset attempts after success
+      return "Login successful";
     } else {
-      const remaining = maxAttempts - attemptCount;
-      console.log(`Incorrect. Attempts left: ${remaining}`);
-
+      attemptCount++;
       if (attemptCount >= maxAttempts) {
         isLocked = true;
-        console.log("Account locked due to too many failed attempts.");
+        return "Account locked due to too many failed login attempts";
+      } else {
+        return `Attempt ${attemptCount}: Login failed`;
       }
     }
   };
-
-  return loginAttempt;
 }
+
 
 
 
