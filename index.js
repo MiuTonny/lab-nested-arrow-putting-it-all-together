@@ -9,7 +9,7 @@ function createLoginTracker(userInfo) {
     }
 
     if (username === userInfo.username && password === userInfo.password) {
-      attemptCount = 0; // reset attempts after success
+      attemptCount = 0; // reset attempts 
       return "Login successful";
     } else {
       attemptCount++;
