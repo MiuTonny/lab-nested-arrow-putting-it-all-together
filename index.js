@@ -3,7 +3,7 @@ function createLoginTracker(userInfo) {
   const maxAttempts = 3;
   let isLocked = false;
 
-  //Nested arrow function to handle login
+  //arrow function to handle login
   const loginAttempt = (username, password) => {
     if (isLocked) {
       console.log("Account is locked.");
